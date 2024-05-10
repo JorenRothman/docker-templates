@@ -1,0 +1,11 @@
+services:
+    database:
+        image: postgres:latest # or pick a different DB
+        restart: always
+        ports:
+            - '5432:5432'
+        environment:
+            POSTGRES_PASSWORD: postgres
+            PGDATA: /data/postgres
+        volumes:
+            - ./docker/data:/data/postgres
