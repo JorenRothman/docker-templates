@@ -1,4 +1,4 @@
-# NextJS
+# NextJS Standalone
 
 ## Installation
 
