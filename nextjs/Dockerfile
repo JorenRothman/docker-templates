@@ -72,6 +72,9 @@ COPY package.json .
 COPY --from=build --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=build --chown=nextjs:nodejs /app/.next/static ./.next/static
 
+# Switch to nextjs user
+USER nextjs
+
 # Expose the port that the application listens on.
 EXPOSE 3000
 

@@ -68,10 +68,6 @@ COPY --from=build /app/public ./public
 RUN mkdir .next
 RUN chown nextjs:nodejs .next
 
-# Set uploads permissons
-RUN mkdir -p /app/${UPLOAD_FOLDER}
-RUN chown -R nextjs:nodejs /app/${UPLOAD_FOLDER}
-
 # Copy package.json so that package manager commands can be used.
 COPY package.json .
 
@@ -79,6 +75,9 @@ COPY package.json .
 # the built application from the build stage into the image.
 COPY --from=build --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=build --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+# Switch to nextjs user
+USER nextjs
 
 # Expose the port that the application listens on.
 EXPOSE 3000
